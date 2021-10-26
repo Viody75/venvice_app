@@ -14,11 +14,13 @@ class _RegisterPageState extends State<RegisterPage> {
   final nameFocus = FocusNode();
   final emailFocus = FocusNode();
   final passFocus = FocusNode();
+  final passVerifFocus = FocusNode();
   final numberFocus = FocusNode();
   bool formIsDone = false;
   bool isEmailActive = false;
   bool isNameActive = false;
   bool isPasswordActive = false;
+  bool isPasswordVerifActive = false;
   bool isNumberActive = false;
 
   bool isChecked = false;
@@ -42,6 +44,12 @@ class _RegisterPageState extends State<RegisterPage> {
         isPasswordActive = passFocus.hasFocus;
       });
       debugPrint('Pass : ' + isPasswordActive.toString());
+    });
+    passVerifFocus.addListener(() {
+      setState(() {
+        isPasswordVerifActive = passVerifFocus.hasFocus;
+      });
+      debugPrint('PassVerif : ' + isPasswordVerifActive.toString());
     });
     numberFocus.addListener(() {
       setState(() {
@@ -183,7 +191,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           height: 18,
                         ),
                         Text(
-                          'Password',
+                          'Kata Sandi',
                           style: TextStyle(
                               fontSize: 18,
                               color: Color(0xff696F79),
@@ -198,6 +206,39 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: TextFormField(
                             focusNode: passFocus,
                             decoration: myInputDecor('Masukan password'),
+                            onEditingComplete: () {
+                              setState(() {
+                                FocusScope.of(context).nextFocus();
+                              });
+                            },
+                            textInputAction: TextInputAction.next,
+                            validator: (String? value) {
+                              return (value != null && value.contains('@'))
+                                  ? 'Do not use the @ char.'
+                                  : null;
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 18,
+                        ),
+                        Text(
+                          'Ulang Kata Sandi',
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xff696F79),
+                              fontWeight: FontWeight.w500),
+                        ),
+                        Container(
+                          width: deviceWidth,
+                          height: 60,
+                          margin: EdgeInsets.only(top: 8),
+                          decoration: isPasswordVerifActive
+                              ? boxActive()
+                              : boxInActive(),
+                          child: TextFormField(
+                            focusNode: passVerifFocus,
+                            decoration: myInputDecor('Masukan ulang password'),
                             onEditingComplete: () {
                               setState(() {
                                 FocusScope.of(context).nextFocus();

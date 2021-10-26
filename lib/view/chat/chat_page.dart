@@ -74,13 +74,16 @@ class _ChatPageViewState extends State<ChatPageView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(
-                    height: 65,
+                    height: 60,
                     child: Container(
-                      color: Colors.white,
+                      color: Colors.deepPurple.shade500,
                       child: Row(
                         children: <Widget>[
                           IconButton(
-                            icon: Icon(Icons.arrow_back_ios_rounded),
+                            icon: Icon(
+                              Icons.arrow_back_ios_rounded,
+                              color: Colors.white,
+                            ),
                             onPressed: () {
                               Get.back();
                             },
@@ -120,7 +123,8 @@ class _ChatPageViewState extends State<ChatPageView> {
                             children: <Widget>[
                               Text(
                                 "Bang Tukang",
-                                style: TextStyle(fontSize: 15),
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.white),
                               ),
                             ],
                           ),

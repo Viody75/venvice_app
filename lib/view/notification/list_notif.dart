@@ -14,13 +14,16 @@ class ListNotificationPage extends StatelessWidget {
         Container(
           width: deviceWidth,
           height: 60,
-          margin: EdgeInsets.symmetric(horizontal: 12),
+          color: Colors.deepPurple.shade500,
           child: Row(
             children: [
               Spacer(),
               Text(
                 'Notifikasi',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               Spacer(),
             ],
@@ -28,7 +31,8 @@ class ListNotificationPage extends StatelessWidget {
         ),
         Container(
           width: deviceWidth,
-          height: deviceHeight - 60,
+          height: deviceHeight - 140,
+          margin: EdgeInsets.only(top: 12),
           child: ListView.separated(
             itemCount: 6,
             separatorBuilder: (context, index) {

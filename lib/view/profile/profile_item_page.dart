@@ -13,7 +13,7 @@ class ItemProfile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: 60,
+        height: 50,
         margin: EdgeInsets.symmetric(horizontal: 18),
         child: Row(
           children: [

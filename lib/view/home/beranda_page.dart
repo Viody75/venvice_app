@@ -38,39 +38,53 @@ class _BerandaPageState extends State<BerandaPage> {
         Stack(
           children: [
             Container(
-                width: deviceWidth, height: 100, color: Colors.deepPurple),
-            Positioned(
-                right: 8,
-                top: 26,
-                child: IconButton(
-                    onPressed: () {
-                      print('chat tapped');
-                      Get.to(() => ListChatPage());
-                    },
-                    icon: Icon(
-                      Icons.chat_outlined,
-                      color: Colors.white,
-                    ))),
-            Positioned(
-              right: 48,
-              top: 26,
-              child: IconButton(
-                onPressed: () {
-                  print('cart tapped');
-                },
-                icon: Icon(
-                  Icons.shopping_cart_outlined,
-                  color: Colors.white,
-                ),
+              width: deviceWidth,
+              height: 250,
+              child: Column(
+                children: [
+                  Expanded(
+                      child: Container(
+                    color: Colors.deepPurple,
+                  )),
+                  Container(width: deviceWidth, height: 60),
+                ],
               ),
             ),
+
+            Positioned(
+                right: 0,
+                left: 0,
+                top: 88,
+                child: Image.asset(
+                  'assets/images/logo_venvice.png',
+                  width: 50,
+                  height: 50,
+                )),
+
+            // chat button
+            // Positioned(
+            //   right: 8,
+            //   top: 26,
+            //   child: IconButton(
+            //     onPressed: () {
+            //       print('chat tapped');
+            //       Get.to(() => ListChatPage());
+            //     },
+            //     icon: Icon(
+            //       Icons.chat_outlined,
+            //       color: Colors.white,
+            //     ),
+            //   ),
+            // ),
+
+            //  search bar
             Column(
               children: [
                 SizedBox(height: 24),
                 Container(
                   height: 50,
                   child: Container(
-                    margin: EdgeInsets.only(right: 100, left: 12),
+                    margin: EdgeInsets.only(right: 24, left: 24),
                     decoration: isSearchActive
                         ? MyStyle.textBoxActive()
                         : MyStyle.textBoxInActive(),
@@ -101,34 +115,40 @@ class _BerandaPageState extends State<BerandaPage> {
                 ),
               ],
             ),
-          ],
-        ),
 
-        // card kupon - koin
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 30, vertical: 24),
-          height: 74,
-          decoration: MyStyle.containerOne(),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Spacer(),
-              VenviceCardItem(
-                  iconData: Icons.confirmation_num_outlined,
-                  valueStr: '40 Kupon',
-                  descStr: 'Kupon Jasa Venvice'),
-              Spacer(),
-              VerticalDivider(
-                color: Colors.black54,
+            // card kupon - koin
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 130,
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 30, vertical: 24),
+                width: deviceWidth,
+                height: 74,
+                decoration: MyStyle.containerOne(),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Spacer(),
+                    VenviceCardItem(
+                        iconData: Icons.confirmation_num_outlined,
+                        valueStr: '40 Kupon',
+                        descStr: 'Kupon Jasa Venvice'),
+                    Spacer(),
+                    VerticalDivider(
+                      color: Colors.black54,
+                    ),
+                    Spacer(),
+                    VenviceCardItem(
+                        iconData: Icons.monetization_on_outlined,
+                        valueStr: '9900 Koin',
+                        descStr: 'Hadiah Koin Venvice'),
+                    Spacer(),
+                  ],
+                ),
               ),
-              Spacer(),
-              VenviceCardItem(
-                  iconData: Icons.monetization_on_outlined,
-                  valueStr: '9900 Koin',
-                  descStr: 'Hadiah Koin Venvice'),
-              Spacer(),
-            ],
-          ),
+            ),
+          ],
         ),
 
         // item kategori
@@ -179,6 +199,62 @@ class _BerandaPageState extends State<BerandaPage> {
               }, radius: 18, dWidth: 110, dHeight: 26)
             ],
           ),
+        ),
+
+        // articles
+        Container(
+          height: 240,
+          width: deviceWidth,
+          child: ListView.builder(
+              itemCount: 4,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Container(
+                  width: deviceWidth - 56,
+                  margin:
+                      EdgeInsets.only(top: 16, bottom: 16, right: 28, left: 28),
+                  decoration: MyStyle.containerOne(),
+                  child: Column(
+                    children: [
+                      ClipRRect(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              topRight: Radius.circular(12)),
+                          child: Container(
+                            width: deviceWidth - 56,
+                            height: 110,
+                            color: Colors.grey,
+                          )),
+                      Spacer(),
+                      Container(
+                        width: double.infinity,
+                        height: 20,
+                        margin: EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          'Selamat Datang di VenVice',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        width: double.infinity,
+                        height: 60,
+                        margin: EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          'Selamat Datang di VenVice, aplikasi pencari jasa pertama di balikpapan. dengan banyak kemudahan yang di tawarkan-nya ayo segera install',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ),
+                      Spacer(),
+                    ],
+                  ),
+                );
+              }),
         ),
       ],
     );

@@ -16,12 +16,16 @@ class ProfilePage extends StatelessWidget {
       children: [
         Container(
           height: 60,
+          color: Colors.deepPurple.shade500,
           child: Row(
             children: [
               Spacer(),
               Text(
                 'Profil',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               Spacer(),
             ],
@@ -38,8 +42,7 @@ class ProfilePage extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: Image(
-                    image: NetworkImage(
-                        'https://www.tutorialkart.com/img/hummingbird.png'),
+                    image: NetworkImage('https://via.placeholder.com/44'),
                     fit: BoxFit.fill,
                     width: 44,
                     height: 44,

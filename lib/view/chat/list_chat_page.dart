@@ -9,7 +9,7 @@ class ListChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var deviceWidth = MediaQuery.of(context).size.width;
-    var deviceHeight = MediaQuery.of(context).size.height - 24;
+    var deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -20,26 +20,26 @@ class ListChatPage extends StatelessWidget {
               Container(
                 width: deviceWidth,
                 height: 60,
-                margin: EdgeInsets.symmetric(horizontal: 12),
+                color: Colors.deepPurple.shade500,
+                padding: EdgeInsets.symmetric(horizontal: 12),
                 child: Row(
                   children: [
-                    IconButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        icon: Icon(Icons.arrow_back_ios_rounded)),
-                    SizedBox(width: 8),
+                    Spacer(),
                     Text(
-                      'Chat',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    )
+                      'Obrolan',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    Spacer(),
                   ],
                 ),
               ),
               Container(
                 width: deviceWidth,
-                height: deviceHeight - 60,
+                height: deviceHeight - 60 - 56 - 24,
+                padding: EdgeInsets.only(top: 12),
                 child: ListView.separated(
                     itemCount: 4,
                     separatorBuilder: (context, index) {

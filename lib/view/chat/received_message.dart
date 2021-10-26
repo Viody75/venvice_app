@@ -18,60 +18,59 @@ class ReceivedMessageWidget extends StatelessWidget {
         child: Padding(
       padding:
           const EdgeInsets.only(right: 75.0, left: 8.0, top: 8.0, bottom: 8.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(0),
-            bottomRight: Radius.circular(12),
-            topLeft: Radius.circular(12),
-            topRight: Radius.circular(12)),
-        child: Container(
-          color: Colors.deepPurple.shade400,
-          child: Stack(
-            children: <Widget>[
-              !isImage
-                  ? Padding(
-                      padding: const EdgeInsets.only(
-                          right: 8.0, left: 8.0, top: 8.0, bottom: 20.0),
-                      child: Text(
-                        content,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.only(
-                          right: 8.0, left: 8.0, top: 8.0, bottom: 15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                            child: Image.asset(
-                              '$imageAddress',
-                              height: 130,
-                              width: 130,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            content,
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      ),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.deepPurple.shade50,
+            border: Border.all(width: 1, color: Colors.deepPurple),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12),
+                topRight: Radius.circular(12),
+                bottomRight: Radius.circular(12))),
+        child: Stack(
+          children: <Widget>[
+            !isImage
+                ? Padding(
+                    padding: const EdgeInsets.only(
+                        right: 8.0, left: 8.0, top: 8.0, bottom: 20.0),
+                    child: Text(
+                      content,
+                      style: TextStyle(color: Colors.black),
                     ),
-              Positioned(
-                bottom: 4,
-                right: 10,
-                child: Text(
-                  time,
-                  style: TextStyle(fontSize: 10, color: Colors.white),
-                ),
-              )
-            ],
-          ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.only(
+                        right: 8.0, left: 8.0, top: 8.0, bottom: 15.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          child: Image.asset(
+                            '$imageAddress',
+                            height: 130,
+                            width: 130,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          content,
+                          style: TextStyle(color: Colors.black),
+                        )
+                      ],
+                    ),
+                  ),
+            Positioned(
+              bottom: 4,
+              left: 10,
+              child: Text(
+                time,
+                style: TextStyle(fontSize: 10, color: Colors.deepPurple),
+              ),
+            )
+          ],
         ),
       ),
     ));

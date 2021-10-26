@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:venvice/view/activities/activities_page.dart';
+import 'package:venvice/view/chat/list_chat_page.dart';
 import 'package:venvice/view/notification/list_notif.dart';
 import 'package:venvice/view/profile/profile_page.dart';
 import 'beranda_page.dart';
@@ -29,7 +31,8 @@ class _MainMenuPageState extends State<MainMenuPage> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     BerandaPage(),
-    Text('Index 1: '),
+    ListChatPage(),
+    ActivitiesPage(),
     ListNotificationPage(),
     ProfilePage(),
   ];
@@ -55,6 +58,10 @@ class _MainMenuPageState extends State<MainMenuPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),
             label: 'Beranda',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat_outlined),
+            label: 'Obrolan',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_pin_rounded),

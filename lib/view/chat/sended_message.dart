@@ -22,10 +22,7 @@ class SendedMessageWidget extends StatelessWidget {
           // margin: const EdgeInsets.only(left: 10.0),
           decoration: BoxDecoration(
             color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black12, blurRadius: 2.0, offset: Offset(0, 1))
-            ],
+            border: Border.all(width: 1, color: Colors.grey),
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(12),
                 bottomRight: Radius.circular(0),
@@ -67,7 +64,7 @@ class SendedMessageWidget extends StatelessWidget {
                   ),
             Positioned(
               bottom: 4,
-              left: 10,
+              right: 10,
               child: Text(
                 time,
                 style: TextStyle(
