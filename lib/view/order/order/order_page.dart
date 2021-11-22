@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:venvice/controller/order_page_controller.dart';
 import 'package:venvice/utils/my_style.dart';
 import 'package:venvice/view/map/map_list_location.dart';
+import 'package:venvice/view/order/cart/cart_page.dart';
+import 'package:venvice/view/order/cart/cart_widget.dart';
 import 'package:venvice/view/widgets/card_beranda_item.dart';
 import 'package:venvice/view/widgets/loading_item.dart';
 import 'package:venvice/view/widgets/outlined_button.dart';
 import 'package:venvice/view/widgets/plus_minus_button.dart';
-import 'cart_page.dart';
-import 'cart_widget.dart';
 import 'loading_order_widget.dart';
 
 class OrderPage extends StatefulWidget {
@@ -375,7 +375,8 @@ class _OrderPageState extends State<OrderPage> {
                       est: _orderPageController.cartEstAll,
                       onTap: () {
                         print('testing');
-                        Get.to(() => CartPage());
+                        Get.to(() => CartPage(),
+                            arguments: ["${berandaData[0]}"]);
                       },
                     )
                   : Container();

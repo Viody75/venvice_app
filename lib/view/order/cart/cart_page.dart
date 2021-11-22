@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:venvice/controller/cart_page_controller.dart';
 import 'package:venvice/controller/order_page_controller.dart';
 import 'package:venvice/utils/my_style.dart';
+import 'package:venvice/view/order/detail_order_page.dart';
+import 'package:venvice/view/order/order/order_button.dart';
 import 'package:venvice/view/widgets/card_beranda_item.dart';
 import 'package:venvice/view/widgets/coloured_button.dart';
 import 'package:venvice/view/widgets/outlined_button.dart';
 import 'package:venvice/view/widgets/plus_minus_button.dart';
-
-import 'order_button.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -22,6 +21,8 @@ class _CartPageState extends State<CartPage> {
       Get.put(OrderPageController());
   final searchFocus = FocusNode();
   bool isSearchActive = false;
+
+  var argsData = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +78,7 @@ class _CartPageState extends State<CartPage> {
                             VenviceCardItem(
                                 iconData: Icons.location_on,
                                 valueStr: 'Lokasi Anda Sekarang',
-                                descStr: 'BLK. A No. 81'),
+                                descStr: '${argsData[0]}'),
                             Spacer(),
                           ],
                         ),
@@ -133,7 +134,7 @@ class _CartPageState extends State<CartPage> {
 
                       // list daftar pesanan
                       Container(
-                        height: 260,
+                        height: 220,
                         margin: EdgeInsets.only(top: 8, left: 26, right: 26),
                         child: GetBuilder<OrderPageController>(
                           builder: (_) {
@@ -235,7 +236,7 @@ class _CartPageState extends State<CartPage> {
                         ),
                       ),
 
-                      // embel2 harga
+                      // harga
                       GetBuilder<OrderPageController>(builder: (_) {
                         return Container(
                           margin: EdgeInsets.only(left: 26, right: 26),
@@ -305,15 +306,14 @@ class _CartPageState extends State<CartPage> {
                               // pesan button
                               OrderButton(
                                   '${_orderPageController.cartEstAll + 10000}',
-                                  () {})
+                                  () {
+                                print('to detail order');
+                                Get.to(() => DetailOrderPage());
+                              })
                             ],
                           ),
                         );
                       }),
-
-                      Container(
-                        height: 60,
-                      )
                     ],
                   ),
                 ),

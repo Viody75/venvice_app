@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:venvice/view/map/map_pick_location.dart';
-import 'package:venvice/view/order/order_page.dart';
 import 'package:venvice/view/widgets/outlined_button.dart';
 
 class MapListLocation extends StatefulWidget {

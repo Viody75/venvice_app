@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:venvice/controller/beranda_page_controller.dart';
 import 'package:venvice/utils/my_style.dart';
 import 'package:get/get.dart';
-import 'package:venvice/view/order/order_page.dart';
+import 'package:venvice/view/order/order/order_page.dart';
 import 'package:venvice/view/widgets/card_berand_item_2.dart';
 import 'package:venvice/view/widgets/outlined_button.dart';
 
