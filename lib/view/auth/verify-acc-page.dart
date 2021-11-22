@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:venvice/view/home/main_menu_page.dart';
+import 'package:venvice/view/main_menu_page.dart';
 
 class VerifyAccount extends StatefulWidget {
   const VerifyAccount({Key? key}) : super(key: key);

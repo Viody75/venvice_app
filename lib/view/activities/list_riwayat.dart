@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:venvice/view/widgets/coloured_button.dart';
+import 'package:venvice/utils/my_style.dart';
 
 class ListRiwayat extends StatefulWidget {
   const ListRiwayat({Key? key}) : super(key: key);
@@ -15,15 +15,18 @@ class _ListRiwayatState extends State<ListRiwayat> {
     double deviceHeight = MediaQuery.of(context).size.height;
     return Container(
       width: deviceWidth,
-      height: deviceHeight - 140 - 80,
+      height: deviceHeight - 120 - 40,
+      padding: EdgeInsets.only(top: 12, bottom: 12),
       child: ListView.separated(
-          itemCount: 5,
           separatorBuilder: (context, index) {
-            return Divider();
+            return SizedBox(height: 12);
           },
+          itemCount: 5,
           itemBuilder: (context, index) {
             return Container(
-              height: 66,
+              height: 110,
+              decoration: MyStyle.containerOne(),
+              margin: EdgeInsets.symmetric(horizontal: 12),
               child: Row(
                 children: [
                   Spacer(),
@@ -47,7 +50,7 @@ class _ListRiwayatState extends State<ListRiwayat> {
                               fontSize: 14, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      Spacer(),
+                      SizedBox(height: 8),
                       Text(
                         'Jasa Sudah Dikerjakan',
                         style: TextStyle(
@@ -55,7 +58,7 @@ class _ListRiwayatState extends State<ListRiwayat> {
                             color: Colors.green,
                             fontWeight: FontWeight.bold),
                       ),
-                      Spacer(),
+                      SizedBox(height: 8),
                       Text(
                         '22 Sept 13:24',
                         style: TextStyle(
@@ -67,8 +70,20 @@ class _ListRiwayatState extends State<ListRiwayat> {
                     ],
                   ),
                   Spacer(),
-                  ColouredBtn('Chat', Colors.deepPurple.shade500,
-                      onTap: () {}, radius: 18, dWidth: 60, dHeight: 26),
+                  Container(
+                    height: double.infinity,
+                    child: Column(
+                      children: [
+                        Spacer(),
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.chat,
+                              color: Colors.deepPurple.shade400,
+                            ))
+                      ],
+                    ),
+                  ),
                   Spacer()
                 ],
               ),

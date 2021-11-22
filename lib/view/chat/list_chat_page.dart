@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
+import 'package:venvice/utils/my_style.dart';
 import 'package:venvice/view/chat/chat_page.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +21,7 @@ class ListChatPage extends StatelessWidget {
               Container(
                 width: deviceWidth,
                 height: 60,
-                color: Colors.deepPurple.shade500,
+                color: MyStyle.primaryColor(),
                 padding: EdgeInsets.symmetric(horizontal: 12),
                 child: Row(
                   children: [
@@ -38,7 +39,7 @@ class ListChatPage extends StatelessWidget {
               ),
               Container(
                 width: deviceWidth,
-                height: deviceHeight - 60 - 56 - 24,
+                height: deviceHeight - 60 - 88,
                 padding: EdgeInsets.only(top: 12),
                 child: ListView.separated(
                     itemCount: 4,

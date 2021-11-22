@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:venvice/utils/my_style.dart';
 import 'package:venvice/view/notification/detail_notif.dart';
 import 'package:venvice/view/profile/edit_profile/edit_profile_page.dart';
 import 'package:venvice/view/profile/kupon/coupon.dart';
@@ -16,7 +17,7 @@ class ProfilePage extends StatelessWidget {
       children: [
         Container(
           height: 60,
-          color: Colors.deepPurple.shade500,
+          color: MyStyle.primaryColor(),
           child: Row(
             children: [
               Spacer(),

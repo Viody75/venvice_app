@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:venvice/utils/my_style.dart';
 import 'package:venvice/view/activities/activities_page.dart';
 import 'package:venvice/view/chat/list_chat_page.dart';
 import 'package:venvice/view/notification/list_notif.dart';
 import 'package:venvice/view/profile/profile_page.dart';
-import 'beranda_page.dart';
+import 'home/beranda_page.dart';
 
 class MainMenuPage extends StatefulWidget {
   const MainMenuPage({Key? key}) : super(key: key);
@@ -77,7 +78,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepPurple[500],
+        selectedItemColor: MyStyle.primaryColor(),
         unselectedItemColor: Colors.blueGrey,
         showUnselectedLabels: true,
         onTap: _onItemTapped,

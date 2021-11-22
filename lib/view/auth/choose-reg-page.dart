@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:venvice/utils/my_style.dart';
+import 'package:venvice/view/auth/register-page.dart';
 import 'package:venvice/view/widgets/venvice-secondary-button.dart';
 
-class ChooseAuthPage extends StatefulWidget {
-  const ChooseAuthPage({Key? key}) : super(key: key);
+class ChooseRegisterPage extends StatefulWidget {
+  const ChooseRegisterPage({Key? key}) : super(key: key);
 
   @override
-  _ChooseAuthPageState createState() => _ChooseAuthPageState();
+  _ChooseRegisterPageState createState() => _ChooseRegisterPageState();
 }
 
-class _ChooseAuthPageState extends State<ChooseAuthPage> {
+class _ChooseRegisterPageState extends State<ChooseRegisterPage> {
   FirebaseAuth auth = FirebaseAuth.instance;
   void checkAuth() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
@@ -72,15 +73,17 @@ class _ChooseAuthPageState extends State<ChooseAuthPage> {
                   ),
                 ),
                 SizedBox(height: 60),
+                SizedBox(height: 20),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   child: VenviceSecondaryBtn(
-                    'Email',
+                    'Daftar',
                     onTap: () {
-                      Get.toNamed('/auth-email-page');
+                      Get.to(RegisterPage());
                     },
                   ),
                 ),
+                SizedBox(height: 12),
               ],
             ),
           ),

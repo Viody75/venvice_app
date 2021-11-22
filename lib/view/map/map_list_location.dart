@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:venvice/view/map/map_pick_location.dart';
+import 'package:venvice/view/order/order_page.dart';
 import 'package:venvice/view/widgets/outlined_button.dart';
 
 class MapListLocation extends StatefulWidget {
@@ -12,6 +13,8 @@ class MapListLocation extends StatefulWidget {
 }
 
 class _MapListLocationState extends State<MapListLocation> {
+  var argsData = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -32,7 +35,7 @@ class _MapListLocationState extends State<MapListLocation> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Get.back();
+                      Get.back(result: ["$argsData"]);
                     },
                     icon: Icon(Icons.arrow_back_ios_rounded),
                   ),
@@ -73,7 +76,9 @@ class _MapListLocationState extends State<MapListLocation> {
                       Container(
                         width: 250,
                         child: Text(
-                          'Blk. A No. 81, Gn. Kelua, Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur',
+                          argsData[0] != null
+                              ? '${argsData[0]}'
+                              : 'Anda belum memiliki lokasi, silahkan pilih lewat Peta',
                           maxLines: 2,
                         ),
                       ),

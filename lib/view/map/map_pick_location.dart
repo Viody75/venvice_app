@@ -1,8 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:venvice/utils/my_style.dart';
+import 'package:venvice/view/map/map_list_location.dart';
+import 'package:venvice/view/widgets/loading_item.dart';
 import 'package:venvice/view/widgets/venvice-button.dart';
 
 class MapPickLocation extends StatefulWidget {
@@ -13,18 +18,50 @@ class MapPickLocation extends StatefulWidget {
 }
 
 class _MapPickLocationState extends State<MapPickLocation> {
+  // vars for map
+  late double userLatitude;
+  late double userLongitude;
+  String userAddress1 = '';
+  String userAddress2 = '';
   Completer<GoogleMapController> _controller = Completer();
-
   static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
+    target: LatLng(-1.269160, 116.825264),
+    zoom: 12,
   );
 
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+  @override
+  void initState() {
+    // TODO: implement initState
+    getUserAddress();
+
+    super.initState();
+  }
+
+  void getUserAddress() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    userLatitude = position.latitude;
+    userLongitude = position.longitude;
+
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(userLatitude, userLongitude);
+
+    print("Lat-Long User : $userLatitude, $userLongitude");
+
+    Placemark userAddresses = placemarks[0];
+    setState(() {
+      userAddress1 = userAddresses.subLocality.toString();
+      userAddress2 = userAddresses.street.toString();
+      _goToUser();
+    });
+    print("Lokasi User : ${userAddresses.street}");
+  }
+
+  Future<void> _goToUser() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(userLatitude, userLongitude), zoom: 17)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +74,7 @@ class _MapPickLocationState extends State<MapPickLocation> {
         height: deviceHeight,
         child: Column(
           children: [
-            SizedBox(height: 20),
+            SizedBox(height: 30),
             // top-nav
             Container(
               width: deviceWidth,
@@ -64,12 +101,31 @@ class _MapPickLocationState extends State<MapPickLocation> {
             Container(
               width: deviceWidth,
               height: deviceHeight - bottomContainerHeight - 90,
-              child: GoogleMap(
-                mapType: MapType.hybrid,
-                initialCameraPosition: _kGooglePlex,
-                onMapCreated: (GoogleMapController controller) {
-                  _controller.complete(controller);
-                },
+              child: Stack(
+                children: [
+                  Container(
+                    width: deviceWidth,
+                    height: deviceHeight - bottomContainerHeight - 90,
+                    child: GoogleMap(
+                      mapType: MapType.normal,
+                      initialCameraPosition: _kGooglePlex,
+                      onMapCreated: (GoogleMapController controller) {
+                        _controller.complete(controller);
+                      },
+                    ),
+                  ),
+                  Container(
+                    width: deviceWidth,
+                    height: deviceHeight - bottomContainerHeight - 90,
+                    child: Center(
+                      child: Icon(
+                        Icons.location_on,
+                        size: 58,
+                        color: MyStyle.primaryColor(),
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
 
@@ -94,17 +150,22 @@ class _MapPickLocationState extends State<MapPickLocation> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Spacer(),
-                            Text(
-                              'Blk. A No. 81',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                            userAddress1 == ''
+                                ? LoadingItem(width: 100, height: 14)
+                                : Text(
+                                    userAddress1,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
                             SizedBox(height: 10),
                             Container(
-                              width: 250,
-                              child: Text(
-                                'Blk. A No. 81, Gn. Kelua, Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur',
-                                maxLines: 2,
-                              ),
+                              width: 200,
+                              child: userAddress2 == ''
+                                  ? LoadingItem(width: 200, height: 14)
+                                  : Text(
+                                      userAddress2,
+                                      maxLines: 2,
+                                    ),
                             ),
                             Spacer(),
                           ],
@@ -112,12 +173,14 @@ class _MapPickLocationState extends State<MapPickLocation> {
                         Spacer(),
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.bookmark_add_outlined))
+                            icon: Icon(Icons.pin_drop_rounded))
                       ],
                     ),
                   ),
                   Spacer(),
-                  VenvicePrimaryBtn('Konfirmasi', onTap: () {}),
+                  VenvicePrimaryBtn('Konfirmasi', onTap: () {
+                    Get.back(result: ["$userAddress2"]);
+                  }),
                   Spacer(),
                 ],
               ),

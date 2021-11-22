@@ -38,6 +38,8 @@ dependencies:
   flutter_local_notifications: ^8.1.1+2
   google_maps_flutter: ^2.0.6
   firebase_auth: ^3.1.0
+  geocoding: ^2.0.1
+  geolocator: ^7.7.1
   
   
 
@@ -67,6 +69,7 @@ flutter:
     - assets/images/indoflag.png
     - assets/images/ss_peps.png
     - assets/images/workshop.png
+    - assets/images/venvice-logo-white.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

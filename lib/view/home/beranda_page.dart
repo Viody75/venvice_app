@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:venvice/controller/beranda_page_controller.dart';
 import 'package:venvice/utils/my_style.dart';
 import 'package:get/get.dart';
-import 'package:venvice/view/chat/list_chat_page.dart';
 import 'package:venvice/view/order/order_page.dart';
-import 'package:venvice/view/widgets/card_beranda_item.dart';
+import 'package:venvice/view/widgets/card_berand_item_2.dart';
 import 'package:venvice/view/widgets/outlined_button.dart';
 
-import 'jelajah_page.dart';
+import 'more_page.dart';
 
 class BerandaPage extends StatefulWidget {
   const BerandaPage({Key? key}) : super(key: key);
@@ -17,6 +17,8 @@ class BerandaPage extends StatefulWidget {
 
 class _BerandaPageState extends State<BerandaPage> {
   final searchFocus = FocusNode();
+  final BerandaPageController _berandaPageController =
+      Get.put(BerandaPageController());
   bool isSearchActive = false;
 
   @override
@@ -44,7 +46,7 @@ class _BerandaPageState extends State<BerandaPage> {
                 children: [
                   Expanded(
                       child: Container(
-                    color: Colors.deepPurple,
+                    color: MyStyle.primaryColor(),
                   )),
                   Container(width: deviceWidth, height: 60),
                 ],
@@ -60,23 +62,6 @@ class _BerandaPageState extends State<BerandaPage> {
                   width: 50,
                   height: 50,
                 )),
-
-            // chat button
-            // Positioned(
-            //   right: 8,
-            //   top: 26,
-            //   child: IconButton(
-            //     onPressed: () {
-            //       print('chat tapped');
-            //       Get.to(() => ListChatPage());
-            //     },
-            //     icon: Icon(
-            //       Icons.chat_outlined,
-            //       color: Colors.white,
-            //     ),
-            //   ),
-            // ),
-
             //  search bar
             Column(
               children: [
@@ -130,7 +115,7 @@ class _BerandaPageState extends State<BerandaPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Spacer(),
-                    VenviceCardItem(
+                    VenviceCardItem2(
                         iconData: Icons.confirmation_num_outlined,
                         valueStr: '40 Kupon',
                         descStr: 'Kupon Jasa Venvice'),
@@ -139,7 +124,7 @@ class _BerandaPageState extends State<BerandaPage> {
                       color: Colors.black54,
                     ),
                     Spacer(),
-                    VenviceCardItem(
+                    VenviceCardItem2(
                         iconData: Icons.monetization_on_outlined,
                         valueStr: '9900 Koin',
                         descStr: 'Hadiah Koin Venvice'),
@@ -161,11 +146,15 @@ class _BerandaPageState extends State<BerandaPage> {
                 crossAxisSpacing: 0,
                 mainAxisSpacing: 20),
             itemCount: 8,
+            physics: new NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext ctx, index) {
               return InkWell(
                   onTap: () {
                     print('item tapped');
-                    Get.to(() => OrderPage());
+                    Get.to(() => OrderPage(), arguments: [
+                      "${_berandaPageController.userAddress}",
+                      "Service Motor"
+                    ]);
                   },
                   child: Container(
                     child: Column(
@@ -177,7 +166,8 @@ class _BerandaPageState extends State<BerandaPage> {
                         ),
                         Spacer(),
                         Text(
-                          'Service \nMotor',
+                          'service \nmotor',
+                          style: TextStyle(fontSize: 11),
                           textAlign: TextAlign.center,
                         )
                       ],
@@ -189,7 +179,7 @@ class _BerandaPageState extends State<BerandaPage> {
 
         // more btn
         Container(
-          height: 50,
+          height: 40,
           margin: EdgeInsets.only(left: 32, right: 32),
           child: Row(
             children: [

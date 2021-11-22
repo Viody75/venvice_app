@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:venvice/utils/my_style.dart';
 
 class ItemProfile extends StatelessWidget {
   ItemProfile(
@@ -19,7 +20,7 @@ class ItemProfile extends StatelessWidget {
           children: [
             Icon(
               iconData,
-              color: Colors.deepPurple.shade600,
+              color: MyStyle.primaryColor(),
             ),
             SizedBox(width: 8),
             Text(itemName,

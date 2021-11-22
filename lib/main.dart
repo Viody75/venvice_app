@@ -3,15 +3,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:venvice/splashscreen.dart';
 import 'package:venvice/view/auth/auth-email-page.dart';
 import 'package:venvice/view/auth/auth-num-page.dart';
 import 'package:venvice/view/auth/choose-auth-page.dart';
 import 'package:venvice/view/auth/register-page.dart';
 import 'package:venvice/view/auth/verify-acc-page.dart';
-import 'package:venvice/view/home/main_menu_page.dart';
+import 'package:venvice/view/main_menu_page.dart';
+import 'package:venvice/view/splashscreen.dart';
 import 'package:venvice/view/test_lab/tes-fcm-page.dart';
-import 'package:venvice/welcome-page.dart';
+import 'package:venvice/view/welcome-page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

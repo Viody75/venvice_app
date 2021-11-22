@@ -29,7 +29,7 @@ class CartWidget extends StatelessWidget {
               ),
               Text(
                 'Harga yang tertera merupakan estimasi',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white, fontSize: 12),
               )
             ],
           ),

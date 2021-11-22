@@ -92,271 +92,290 @@ class _RegisterPageState extends State<RegisterPage> {
                     ],
                   ),
                 ),
-                // texts
-                Container(
-                  width: deviceWidth,
-                  margin: EdgeInsets.symmetric(horizontal: 18),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 18,
-                      ),
-                      Text(
-                        'Daftar',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      Text(
-                        'Silahkan lengkapi data dirimu di bawah ini',
-                        style: TextStyle(fontSize: 14, color: Colors.grey),
-                      ),
-                      SizedBox(
-                        height: 18,
-                      ),
-                    ],
-                  ),
-                ),
 
-                // fields
                 Container(
                   width: deviceWidth,
-                  margin: EdgeInsets.symmetric(horizontal: 18),
-                  child: Form(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Nama Lengkap',
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xff696F79),
-                              fontWeight: FontWeight.w500),
+                  height: deviceHeight - 60,
+                  child: ListView(
+                    children: [
+                      // texts
+                      Container(
+                        width: deviceWidth,
+                        height: 90,
+                        margin: EdgeInsets.symmetric(horizontal: 18),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 18,
+                            ),
+                            Text(
+                              'Daftar',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 12,
+                            ),
+                            Text(
+                              'Silahkan lengkapi data dirimu di bawah ini',
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.grey),
+                            ),
+                            SizedBox(
+                              height: 18,
+                            ),
+                          ],
                         ),
-                        Container(
-                          width: deviceWidth,
-                          height: 60,
-                          margin: EdgeInsets.only(top: 8),
-                          decoration:
-                              isNameActive ? boxActive() : boxInActive(),
-                          child: TextFormField(
-                            focusNode: nameFocus,
-                            decoration:
-                                myInputDecor('Masukan Nama Lengkap Anda'),
-                            textInputAction: TextInputAction.next,
-                            validator: (String? value) {
-                              return (value != null && value.contains('@'))
-                                  ? 'Do not use the @ char.'
-                                  : null;
-                            },
-                            onEditingComplete: () {
-                              FocusScope.of(context).nextFocus();
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          height: 18,
-                        ),
-                        Text(
-                          'Email',
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xff696F79),
-                              fontWeight: FontWeight.w500),
-                        ),
-                        Container(
-                          width: deviceWidth,
-                          height: 60,
-                          margin: EdgeInsets.only(top: 8),
-                          decoration:
-                              isEmailActive ? boxActive() : boxInActive(),
-                          child: TextFormField(
-                            focusNode: emailFocus,
-                            decoration: myInputDecor('Masukan Email'),
-                            textInputAction: TextInputAction.next,
-                            validator: (String? value) {
-                              return (value != null && value.contains('@'))
-                                  ? 'Do not use the @ char.'
-                                  : null;
-                            },
-                            onEditingComplete: () {
-                              FocusScope.of(context).nextFocus();
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          height: 18,
-                        ),
-                        Text(
-                          'Kata Sandi',
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xff696F79),
-                              fontWeight: FontWeight.w500),
-                        ),
-                        Container(
-                          width: deviceWidth,
-                          height: 60,
-                          margin: EdgeInsets.only(top: 8),
-                          decoration:
-                              isPasswordActive ? boxActive() : boxInActive(),
-                          child: TextFormField(
-                            focusNode: passFocus,
-                            decoration: myInputDecor('Masukan password'),
-                            onEditingComplete: () {
-                              setState(() {
-                                FocusScope.of(context).nextFocus();
-                              });
-                            },
-                            textInputAction: TextInputAction.next,
-                            validator: (String? value) {
-                              return (value != null && value.contains('@'))
-                                  ? 'Do not use the @ char.'
-                                  : null;
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          height: 18,
-                        ),
-                        Text(
-                          'Ulang Kata Sandi',
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xff696F79),
-                              fontWeight: FontWeight.w500),
-                        ),
-                        Container(
-                          width: deviceWidth,
-                          height: 60,
-                          margin: EdgeInsets.only(top: 8),
-                          decoration: isPasswordVerifActive
-                              ? boxActive()
-                              : boxInActive(),
-                          child: TextFormField(
-                            focusNode: passVerifFocus,
-                            decoration: myInputDecor('Masukan ulang password'),
-                            onEditingComplete: () {
-                              setState(() {
-                                FocusScope.of(context).nextFocus();
-                              });
-                            },
-                            textInputAction: TextInputAction.next,
-                            validator: (String? value) {
-                              return (value != null && value.contains('@'))
-                                  ? 'Do not use the @ char.'
-                                  : null;
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          height: 18,
-                        ),
-                        Text(
-                          'Nomor Ponsel',
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Color(0xff696F79),
-                              fontWeight: FontWeight.w500),
-                        ),
-                        Container(
-                          width: deviceWidth,
-                          height: 60,
-                          margin: EdgeInsets.only(top: 8),
-                          decoration:
-                              isNumberActive ? boxActive() : boxInActive(),
-                          child: Row(
+                      ),
+
+                      // fields
+                      Container(
+                        width: deviceWidth,
+                        margin: EdgeInsets.symmetric(horizontal: 18),
+                        child: Form(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                width: 80,
-                                height: 60,
-                                child: Center(
-                                  child: Row(
-                                    children: [
-                                      SizedBox(width: 6),
-                                      Image.asset(
-                                        'assets/images/indoflag.png',
-                                        width: 24,
-                                      ),
-                                      SizedBox(width: 6),
-                                      Text(
-                                        '+62',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                      VerticalDivider(
-                                        thickness: 2,
-                                      )
-                                    ],
-                                  ),
-                                ),
+                              Text(
+                                'Nama Lengkap',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color(0xff696F79),
+                                    fontWeight: FontWeight.w500),
                               ),
                               Container(
-                                width: 200,
+                                width: deviceWidth,
                                 height: 60,
+                                margin: EdgeInsets.only(top: 8),
+                                decoration:
+                                    isNameActive ? boxActive() : boxInActive(),
                                 child: TextFormField(
-                                  focusNode: numberFocus,
-                                  decoration: myInputNumberDecor(
-                                      'Masukan nomor ponsel'),
-                                  textInputAction: TextInputAction.done,
+                                  focusNode: nameFocus,
+                                  decoration:
+                                      myInputDecor('Masukan Nama Lengkap Anda'),
+                                  textInputAction: TextInputAction.next,
                                   validator: (String? value) {
                                     return (value != null &&
-                                            value.contains('+62'))
-                                        ? 'Tidak Menggunakan +62'
+                                            value.contains('@'))
+                                        ? 'Do not use the @ char.'
                                         : null;
                                   },
                                   onEditingComplete: () {
-                                    FocusScope.of(context).unfocus();
+                                    FocusScope.of(context).nextFocus();
                                   },
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: deviceWidth,
-                          height: 60,
-                          margin: EdgeInsets.only(top: 8),
-                          child: Row(
-                            children: [
-                              Checkbox(
-                                  value: isChecked,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isChecked = value!;
-                                      formIsDone = true;
-                                    });
-                                    print("checkbox : $isChecked");
-                                  }),
+                              SizedBox(
+                                height: 18,
+                              ),
+                              Text(
+                                'Email',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color(0xff696F79),
+                                    fontWeight: FontWeight.w500),
+                              ),
                               Container(
-                                width: 300,
-                                child: Text(
-                                    'Dengan mendaftar, anda menyetujui Syarat dan Ketentuan serta Kebijakan Privasi'),
+                                width: deviceWidth,
+                                height: 60,
+                                margin: EdgeInsets.only(top: 8),
+                                decoration:
+                                    isEmailActive ? boxActive() : boxInActive(),
+                                child: TextFormField(
+                                  focusNode: emailFocus,
+                                  decoration: myInputDecor('Masukan Email'),
+                                  textInputAction: TextInputAction.next,
+                                  validator: (String? value) {
+                                    return (value != null &&
+                                            value.contains('@'))
+                                        ? 'Do not use the @ char.'
+                                        : null;
+                                  },
+                                  onEditingComplete: () {
+                                    FocusScope.of(context).nextFocus();
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 18,
+                              ),
+                              Text(
+                                'Kata Sandi',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color(0xff696F79),
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Container(
+                                width: deviceWidth,
+                                height: 60,
+                                margin: EdgeInsets.only(top: 8),
+                                decoration: isPasswordActive
+                                    ? boxActive()
+                                    : boxInActive(),
+                                child: TextFormField(
+                                  focusNode: passFocus,
+                                  decoration: myInputDecor('Masukan password'),
+                                  onEditingComplete: () {
+                                    setState(() {
+                                      FocusScope.of(context).nextFocus();
+                                    });
+                                  },
+                                  textInputAction: TextInputAction.next,
+                                  validator: (String? value) {
+                                    return (value != null &&
+                                            value.contains('@'))
+                                        ? 'Do not use the @ char.'
+                                        : null;
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 18,
+                              ),
+                              Text(
+                                'Ulang Kata Sandi',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color(0xff696F79),
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Container(
+                                width: deviceWidth,
+                                height: 60,
+                                margin: EdgeInsets.only(top: 8),
+                                decoration: isPasswordVerifActive
+                                    ? boxActive()
+                                    : boxInActive(),
+                                child: TextFormField(
+                                  focusNode: passVerifFocus,
+                                  decoration:
+                                      myInputDecor('Masukan ulang password'),
+                                  onEditingComplete: () {
+                                    setState(() {
+                                      FocusScope.of(context).nextFocus();
+                                    });
+                                  },
+                                  textInputAction: TextInputAction.next,
+                                  validator: (String? value) {
+                                    return (value != null &&
+                                            value.contains('@'))
+                                        ? 'Do not use the @ char.'
+                                        : null;
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 18,
+                              ),
+                              Text(
+                                'Nomor Ponsel',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color(0xff696F79),
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Container(
+                                width: deviceWidth,
+                                height: 60,
+                                margin: EdgeInsets.only(top: 8),
+                                decoration: isNumberActive
+                                    ? boxActive()
+                                    : boxInActive(),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 80,
+                                      height: 60,
+                                      child: Center(
+                                        child: Row(
+                                          children: [
+                                            SizedBox(width: 6),
+                                            Image.asset(
+                                              'assets/images/indoflag.png',
+                                              width: 24,
+                                            ),
+                                            SizedBox(width: 6),
+                                            Text(
+                                              '+62',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                            VerticalDivider(
+                                              thickness: 2,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 200,
+                                      height: 60,
+                                      child: TextFormField(
+                                        focusNode: numberFocus,
+                                        decoration: myInputNumberDecor(
+                                            'Masukan nomor ponsel'),
+                                        textInputAction: TextInputAction.done,
+                                        validator: (String? value) {
+                                          return (value != null &&
+                                                  value.contains('+62'))
+                                              ? 'Tidak Menggunakan +62'
+                                              : null;
+                                        },
+                                        onEditingComplete: () {
+                                          FocusScope.of(context).unfocus();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: deviceWidth,
+                                height: 60,
+                                margin: EdgeInsets.only(top: 8),
+                                child: Row(
+                                  children: [
+                                    Checkbox(
+                                        value: isChecked,
+                                        onChanged: (bool? value) {
+                                          setState(() {
+                                            isChecked = value!;
+                                            formIsDone = true;
+                                          });
+                                          print("checkbox : $isChecked");
+                                        }),
+                                    Container(
+                                      width: deviceWidth - 100,
+                                      child: Text(
+                                          'Dengan mendaftar, anda menyetujui Syarat dan Ketentuan serta Kebijakan Privasi'),
+                                    )
+                                  ],
+                                ),
                               )
                             ],
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      ),
+
+                      // button
+                      Container(
+                          margin: EdgeInsets.all(18),
+                          child: formIsDone
+                              ? VenvicePrimaryBtn(
+                                  'Selanjutnya',
+                                  onTap: () {
+                                    Get.toNamed('/verify-acc-page');
+                                  },
+                                )
+                              : VenviceBtnDisabled('Selanjutnya')),
+                      SizedBox(height: 36)
+                    ],
                   ),
                 ),
-
-                // button
-                Container(
-                    margin: EdgeInsets.all(18),
-                    child: formIsDone
-                        ? VenvicePrimaryBtn(
-                            'Selanjutnya',
-                            onTap: () {
-                              Get.toNamed('/verify-acc-page');
-                            },
-                          )
-                        : VenviceBtnDisabled('Selanjutnya'))
               ],
             ),
           ),

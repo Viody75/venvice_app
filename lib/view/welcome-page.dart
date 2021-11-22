@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:venvice/view/auth/choose-auth-page.dart';
+import 'package:venvice/view/auth/choose-reg-page.dart';
 import 'package:venvice/view/widgets/indicator-off.dart';
 import 'package:venvice/view/widgets/indicator-on.dart';
 import 'package:venvice/view/widgets/venvice-button.dart';
@@ -168,7 +169,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   child: VenviceSecondaryBtn(
                     'Belum punya akun? Daftar',
                     onTap: () {
-                      Get.toNamed('/register-page');
+                      Get.to(ChooseRegisterPage());
                     },
                   ),
                 ),

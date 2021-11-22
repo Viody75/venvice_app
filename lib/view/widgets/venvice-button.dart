@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:venvice/utils/my_style.dart';
 
 class VenvicePrimaryBtn extends StatelessWidget {
   const VenvicePrimaryBtn(this.name, {required this.onTap});
@@ -20,8 +21,8 @@ class VenvicePrimaryBtn extends StatelessWidget {
               begin: AlignmentDirectional.bottomStart,
               end: AlignmentDirectional.topEnd,
               colors: [
-                Color(0xff1D2786),
-                Color(0xff6A65D8),
+                MyStyle.primaryColor(),
+                MyStyle.primaryColor(),
               ],
             ),
           ),

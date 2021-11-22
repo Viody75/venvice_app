@@ -4,6 +4,7 @@ import 'package:venvice/controller/order_page_controller.dart';
 import 'package:venvice/utils/my_style.dart';
 import 'package:venvice/view/map/map_list_location.dart';
 import 'package:venvice/view/widgets/card_beranda_item.dart';
+import 'package:venvice/view/widgets/loading_item.dart';
 import 'package:venvice/view/widgets/outlined_button.dart';
 import 'package:venvice/view/widgets/plus_minus_button.dart';
 import 'cart_page.dart';
@@ -24,6 +25,8 @@ class _OrderPageState extends State<OrderPage> {
 
   bool isSearchActive = false;
 
+  var berandaData = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -37,34 +40,14 @@ class _OrderPageState extends State<OrderPage> {
             height: deviceHeight,
             child: ListView(
               children: [
-                // top-nav
-                Container(
-                  width: deviceWidth,
-                  margin: EdgeInsets.symmetric(horizontal: 12),
-                  height: 60,
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        icon: Icon(Icons.arrow_back_ios_rounded),
-                      ),
-                      Text(
-                        'Salon',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      Spacer(),
-                    ],
-                  ),
-                ),
+                SizedBox(height: 60),
 
                 // card alamat - waktubuka
                 InkWell(
                   onTap: () {
                     print('Alamat Tapped');
-                    Get.to(() => MapListLocation());
+                    Get.to(() => MapListLocation(),
+                        arguments: ["${berandaData[0]}"]);
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -76,8 +59,10 @@ class _OrderPageState extends State<OrderPage> {
                         Spacer(),
                         VenviceCardItem(
                             iconData: Icons.location_on,
-                            valueStr: 'BLK. A No. 81',
-                            descStr: 'Lokasi Anda Sekarang'),
+                            valueStr: 'Lokasi Anda Sekarang',
+                            descStr: berandaData[0] != null
+                                ? '${berandaData[0]}'
+                                : 'Pilih Lokasi Anda disini'),
                         Spacer(),
                       ],
                     ),
@@ -113,6 +98,56 @@ class _OrderPageState extends State<OrderPage> {
                   ),
                 ),
 
+                //bingung mau pesan apa
+                Container(
+                  height: 50,
+                  margin: EdgeInsets.only(left: 26, right: 26, top: 8),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Bingung mau pesan apa?',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
+                      OutlinedBtn('Konsultasi',
+                          onTap: () {}, radius: 18, dWidth: 100, dHeight: 26)
+                    ],
+                  ),
+                ),
+
+                // text bingung
+                Container(
+                  height: 150,
+                  child: ListView.builder(
+                      itemCount: 6,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return _orderPageController.serviceOrderExist == true
+                            ? Container(
+                                width: 300,
+                                margin: EdgeInsets.only(left: 18),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.network(
+                                    _orderPageController.serviceOrderList[index]
+                                        ['avatar'],
+                                    width: 120,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              )
+                            : Container(
+                                width: 300,
+                                margin: EdgeInsets.only(left: 18),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child:
+                                        LoadingItem(width: 300, height: 150)),
+                              );
+                      }),
+                ),
+
                 //promo
                 Container(
                   height: 50,
@@ -131,9 +166,9 @@ class _OrderPageState extends State<OrderPage> {
                   ),
                 ),
 
-                //list layanan
+                //list layanan promo
                 Container(
-                    height: 266,
+                    height: 256,
                     margin: EdgeInsets.only(top: 8),
                     child: GetBuilder<OrderPageController>(
                       builder: (_) {
@@ -144,30 +179,50 @@ class _OrderPageState extends State<OrderPage> {
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   return Container(
-                                    margin: EdgeInsets.only(left: 24),
+                                    margin: EdgeInsets.only(left: 18),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          child: Image.network(
-                                            _orderPageController
-                                                    .serviceOrderList[index]
-                                                ['avatar'],
-                                            width: 120,
-                                            height: 120,
-                                            fit: BoxFit.fill,
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        Text(
-                                          "${_orderPageController.serviceOrderList[index]['price_disc']} % Off",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.red[900]),
+                                        Stack(
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              child: Image.network(
+                                                _orderPageController
+                                                        .serviceOrderList[index]
+                                                    ['avatar'],
+                                                width: 120,
+                                                height: 120,
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 72,
+                                              height: 36,
+                                              child: Center(
+                                                child: Text(
+                                                  "${_orderPageController.serviceOrderList[index]['price_disc']} % Off",
+                                                  style: TextStyle(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.red[900]),
+                                                ),
+                                              ),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  12),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  12))),
+                                            )
+                                          ],
                                         ),
                                         Spacer(),
                                         Text(
@@ -188,9 +243,10 @@ class _OrderPageState extends State<OrderPage> {
                                         Spacer(),
                                         Container(
                                           width: 120,
+                                          height: 36,
                                           child: Text(
                                               "${_orderPageController.serviceOrderList[index]['service_name']}",
-                                              overflow: TextOverflow.ellipsis,
+                                              // overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   color:
@@ -198,7 +254,7 @@ class _OrderPageState extends State<OrderPage> {
                                         ),
                                         Spacer(),
                                         Text(
-                                            "${_orderPageController.serviceOrderList[index]['est_time']} Menit",
+                                            "Kategori ${_orderPageController.serviceOrderList[index]['est_time']}",
                                             style: TextStyle(
                                                 fontSize: 13,
                                                 color: Colors.grey)),
@@ -274,31 +330,40 @@ class _OrderPageState extends State<OrderPage> {
                       },
                     )),
 
-                //lainya
-                Container(
-                  height: 50,
-                  margin: EdgeInsets.only(left: 26, right: 26, top: 8),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Layanan Lainnya',
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.bold),
-                      ),
-                      Spacer(),
-                      OutlinedBtn('Lihat Semua',
-                          onTap: () {}, radius: 18, dWidth: 110, dHeight: 26)
-                    ],
-                  ),
-                ),
-
-                Container(
-                  height: 80,
-                )
+                SizedBox(height: 84)
               ],
             ),
           ),
         ),
+
+        // judul
+        Positioned(
+          top: 30,
+          left: 0,
+          right: 0,
+          child: // top-nav
+              Container(
+            color: Colors.white,
+            width: deviceWidth,
+            height: 60,
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: Icon(Icons.arrow_back_ios_rounded),
+                ),
+                Text(
+                  berandaData[1],
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                Spacer(),
+              ],
+            ),
+          ),
+        ),
+
         Positioned(
             bottom: 0,
             left: 0,

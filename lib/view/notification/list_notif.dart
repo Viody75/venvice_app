@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:venvice/utils/my_style.dart';
 import 'package:venvice/view/notification/detail_notif.dart';
 
 class ListNotificationPage extends StatelessWidget {
@@ -14,7 +15,7 @@ class ListNotificationPage extends StatelessWidget {
         Container(
           width: deviceWidth,
           height: 60,
-          color: Colors.deepPurple.shade500,
+          color: MyStyle.primaryColor(),
           child: Row(
             children: [
               Spacer(),
