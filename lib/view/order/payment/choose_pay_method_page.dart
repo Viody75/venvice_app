@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:venvice/utils/my_style.dart';
-import 'package:venvice/view/order/pay_methode_widget.dart';
+import 'package:venvice/view/order/payment/pay_methode_widget.dart';
 
 class ChoosePayMethodPage extends StatefulWidget {
   const ChoosePayMethodPage({Key? key}) : super(key: key);

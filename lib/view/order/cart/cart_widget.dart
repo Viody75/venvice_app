@@ -14,7 +14,7 @@ class CartWidget extends StatelessWidget {
       height: 60,
       margin: EdgeInsets.all(12),
       padding: EdgeInsets.symmetric(vertical: 12, horizontal: 30),
-      decoration: MyStyle.containerTwo(Colors.deepPurple.shade400),
+      decoration: MyStyle.containerTwo(MyStyle.primaryColor()),
       child: Row(
         children: [
           Column(

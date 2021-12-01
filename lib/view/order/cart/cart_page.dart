@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:venvice/controller/order_page_controller.dart';
 import 'package:venvice/utils/my_style.dart';
-import 'package:venvice/view/order/detail_order_page.dart';
+import 'package:venvice/view/order/order/detail_order_page.dart';
 import 'package:venvice/view/order/order/order_button.dart';
 import 'package:venvice/view/widgets/card_beranda_item.dart';
 import 'package:venvice/view/widgets/coloured_button.dart';
@@ -17,8 +17,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  final OrderPageController _orderPageController =
-      Get.put(OrderPageController());
+  final _orderPageController = Get.find<OrderPageController>();
   final searchFocus = FocusNode();
   bool isSearchActive = false;
 
@@ -40,7 +39,6 @@ class _CartPageState extends State<CartPage> {
                 // top-nav
                 Container(
                   width: deviceWidth,
-                  margin: EdgeInsets.symmetric(horizontal: 12),
                   height: 60,
                   child: Row(
                     children: [
@@ -68,7 +66,7 @@ class _CartPageState extends State<CartPage> {
                       // card alamat - waktubuka
                       Container(
                         margin:
-                            EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                            EdgeInsets.symmetric(horizontal: 18, vertical: 12),
                         height: 56,
                         decoration: MyStyle.containerOne(),
                         child: Row(
@@ -87,7 +85,7 @@ class _CartPageState extends State<CartPage> {
                       //search jasa
                       Container(
                         height: 50,
-                        margin: EdgeInsets.only(left: 26, right: 26, top: 8),
+                        margin: EdgeInsets.only(left: 18, right: 18, top: 8),
                         decoration: isSearchActive
                             ? MyStyle.textBoxActive()
                             : MyStyle.textBoxInActive(),
@@ -116,7 +114,7 @@ class _CartPageState extends State<CartPage> {
                       // daftar pesanan
                       Container(
                         height: 50,
-                        margin: EdgeInsets.only(left: 26, right: 26, top: 8),
+                        margin: EdgeInsets.only(left: 18, right: 18, top: 8),
                         child: Row(
                           children: [
                             Text(
@@ -135,7 +133,7 @@ class _CartPageState extends State<CartPage> {
                       // list daftar pesanan
                       Container(
                         height: 220,
-                        margin: EdgeInsets.only(top: 8, left: 26, right: 26),
+                        margin: EdgeInsets.only(top: 8, left: 18, right: 18),
                         child: GetBuilder<OrderPageController>(
                           builder: (_) {
                             return ListView.builder(
@@ -223,7 +221,7 @@ class _CartPageState extends State<CartPage> {
                       // Detail Pembayaran
                       Container(
                         height: 50,
-                        margin: EdgeInsets.only(left: 26, right: 26, top: 8),
+                        margin: EdgeInsets.only(left: 18, right: 18, top: 8),
                         child: Row(
                           children: [
                             Text(
@@ -239,7 +237,7 @@ class _CartPageState extends State<CartPage> {
                       // harga
                       GetBuilder<OrderPageController>(builder: (_) {
                         return Container(
-                          margin: EdgeInsets.only(left: 26, right: 26),
+                          margin: EdgeInsets.only(left: 18, right: 18),
                           child: Column(
                             children: [
                               // total harga
@@ -290,8 +288,7 @@ class _CartPageState extends State<CartPage> {
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  ColouredBtn(
-                                      'Tunai', Colors.deepPurple.shade400,
+                                  ColouredBtn('Tunai', MyStyle.primaryColor(),
                                       onTap: () {},
                                       radius: 24,
                                       dWidth: 56,

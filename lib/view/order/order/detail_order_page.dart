@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:venvice/utils/my_style.dart';
 import 'package:venvice/view/auth/choose-auth-page.dart';
-import 'package:venvice/view/order/choose_pay_method_page.dart';
+import 'package:venvice/view/order/payment/choose_pay_method_page.dart';
 import 'package:venvice/view/widgets/outlined_button.dart';
 
 class DetailOrderPage extends StatefulWidget {
@@ -287,8 +287,27 @@ class _DetailOrderPageState extends State<DetailOrderPage> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Spacer(),
+                                Container(
+                                  width: 100,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(12)),
+                                      color: MyStyle.primaryColor()),
+                                  child: Center(
+                                    child: Text(
+                                      'Tunai',
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(() => ChoosePayMethodPage());
+                                  },
                                   icon: Icon(Icons.more_vert),
                                 ),
                                 SizedBox(width: 12),
@@ -297,9 +316,7 @@ class _DetailOrderPageState extends State<DetailOrderPage> {
 
                             // bayar btn
                             InkWell(
-                              onTap: () {
-                                Get.to(() => ChoosePayMethodPage());
-                              },
+                              onTap: () {},
                               child: Container(
                                 width: double.infinity,
                                 height: 50,

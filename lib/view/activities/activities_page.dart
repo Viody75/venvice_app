@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:venvice/utils/my_style.dart';
 import 'package:venvice/view/activities/list_dalam_proses.dart';
 import 'package:venvice/view/activities/list_riwayat.dart';
-import 'package:venvice/view/notification/detail_notif.dart';
-import 'package:venvice/view/widgets/coloured_button.dart';
-import 'package:venvice/view/widgets/outlined_button.dart';
 
 class ActivitiesPage extends StatefulWidget {
   const ActivitiesPage({Key? key}) : super(key: key);
@@ -40,44 +36,45 @@ class _ActivitiesPageState extends State<ActivitiesPage> {
           ),
         ),
         Container(
-            width: deviceWidth,
-            height: deviceHeight - 60,
-            child: DefaultTabController(
-              length: 2,
-              child: Scaffold(
-                body: ListView(
-                  children: [
-                    Container(
-                      width: deviceWidth,
-                      height: 60,
-                      child: TabBar(
-                        indicatorColor: MyStyle.primaryColor(),
-                        labelColor: MyStyle.primaryColor(),
-                        unselectedLabelColor: Colors.grey,
-                        tabs: [
-                          Tab(
-                            text: 'Riwayat',
-                          ),
-                          Tab(
-                            text: 'Dalam Proses',
-                          ),
-                        ],
-                      ),
+          width: deviceWidth,
+          height: deviceHeight - 60,
+          child: DefaultTabController(
+            length: 2,
+            child: Scaffold(
+              body: ListView(
+                children: [
+                  Container(
+                    width: deviceWidth,
+                    height: 60,
+                    child: TabBar(
+                      indicatorColor: MyStyle.primaryColor(),
+                      labelColor: MyStyle.primaryColor(),
+                      unselectedLabelColor: Colors.grey,
+                      tabs: [
+                        Tab(
+                          text: 'Riwayat',
+                        ),
+                        Tab(
+                          text: 'Dalam Proses',
+                        ),
+                      ],
                     ),
-                    Container(
-                      width: deviceWidth,
-                      height: deviceHeight - 120 - 40,
-                      child: TabBarView(
-                        children: [
-                          ListRiwayat(),
-                          ListDalamProgress(),
-                        ],
-                      ),
+                  ),
+                  Container(
+                    width: deviceWidth,
+                    height: deviceHeight - 120 - 40,
+                    child: TabBarView(
+                      children: [
+                        ListRiwayat(),
+                        ListDalamProgress(),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ))
+            ),
+          ),
+        ),
       ],
     );
   }

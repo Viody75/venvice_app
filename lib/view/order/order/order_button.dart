@@ -12,7 +12,7 @@ class OrderButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: 50,
       padding: EdgeInsets.symmetric(horizontal: 24),
-      decoration: MyStyle.containerTwo(Colors.deepPurple.shade400),
+      decoration: MyStyle.containerTwo(MyStyle.primaryColor()),
       child: Row(
         children: [
           Text(

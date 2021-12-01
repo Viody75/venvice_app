@@ -33,7 +33,6 @@ class _MapPickLocationState extends State<MapPickLocation> {
   void initState() {
     // TODO: implement initState
     getUserAddress();
-
     super.initState();
   }
 

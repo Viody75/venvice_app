@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:venvice/controller/order_page_controller.dart';
 import 'package:venvice/utils/my_style.dart';
-import 'package:venvice/view/map/map_list_location.dart';
 import 'package:venvice/view/order/cart/cart_page.dart';
 import 'package:venvice/view/order/cart/cart_widget.dart';
-import 'package:venvice/view/search/search_sub_jasa_page.dart';
-import 'package:venvice/view/widgets/card_beranda_item.dart';
+import 'package:venvice/view/order/order/loading_order_widget.dart';
 import 'package:venvice/view/widgets/loading_item.dart';
 import 'package:venvice/view/widgets/outlined_button.dart';
+import 'package:get/get.dart';
 import 'package:venvice/view/widgets/plus_minus_button.dart';
-import 'loading_order_widget.dart';
 
-class OrderPage extends StatefulWidget {
-  const OrderPage({Key? key}) : super(key: key);
+class SearchSubJasaPage extends StatefulWidget {
+  const SearchSubJasaPage({Key? key}) : super(key: key);
 
   @override
-  _OrderPageState createState() => _OrderPageState();
+  _SearchSubJasaPageState createState() => _SearchSubJasaPageState();
 }
 
-class _OrderPageState extends State<OrderPage> {
-  final OrderPageController _orderPageController =
-      Get.put(OrderPageController());
-
+class _SearchSubJasaPageState extends State<SearchSubJasaPage> {
+  final _orderPageController = Get.find<OrderPageController>();
+  final searchFocus = FocusNode();
+  bool isSearchActive = false;
   var argsData = Get.arguments;
-
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -40,38 +36,13 @@ class _OrderPageState extends State<OrderPage> {
               children: [
                 SizedBox(height: 60),
 
-                // card alamat - waktubuka
-                InkWell(
-                  onTap: () {
-                    print('Alamat Tapped');
-                    Get.to(() => MapListLocation(),
-                        arguments: ["${argsData[0]}"]);
-                  },
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-                    height: 74,
-                    decoration: MyStyle.containerOne(),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Spacer(),
-                        VenviceCardItem(
-                            iconData: Icons.location_on,
-                            valueStr: 'Lokasi Anda Sekarang',
-                            descStr: argsData[0] != null
-                                ? '${argsData[0]}'
-                                : 'Pilih Lokasi Anda disini'),
-                        Spacer(),
-                      ],
-                    ),
-                  ),
-                ),
-
                 //search jasa
                 Container(
                   height: 50,
                   margin: EdgeInsets.only(left: 18, right: 18, top: 8),
-                  decoration: MyStyle.textBoxInActive(),
+                  decoration: isSearchActive
+                      ? MyStyle.textBoxActive()
+                      : MyStyle.textBoxInActive(),
                   child: Row(
                     children: [
                       Container(
@@ -83,80 +54,25 @@ class _OrderPageState extends State<OrderPage> {
                       ),
                       Expanded(
                         child: TextFormField(
+                          focusNode: searchFocus,
                           decoration:
                               MyStyle.myInputDecor('Cari jasa yang kamu mau'),
-                          showCursor: false,
-                          readOnly: true,
-                          onTap: () {
-                            Get.to(() => SearchSubJasaPage(), arguments: [
-                              "${argsData[0]}",
-                              "${argsData[1]}"
-                            ]);
-                          },
+                          textInputAction: TextInputAction.next,
+                          onEditingComplete: () {},
                         ),
                       ),
                     ],
                   ),
                 ),
 
-                //bingung mau pesan apa
+                //promo
                 Container(
                   height: 50,
                   margin: EdgeInsets.only(left: 18, right: 18, top: 8),
                   child: Row(
                     children: [
                       Text(
-                        'Bingung mau pesan apa?',
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.bold),
-                      ),
-                      Spacer(),
-                      OutlinedBtn('Konsultasi',
-                          onTap: () {}, radius: 18, dWidth: 100, dHeight: 26)
-                    ],
-                  ),
-                ),
-
-                // text bingung
-                Container(
-                  height: 150,
-                  child: ListView.builder(
-                      itemCount: 6,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return _orderPageController.serviceOrderExist == true
-                            ? Container(
-                                width: 300,
-                                margin: EdgeInsets.only(left: 18),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.network(
-                                    _orderPageController.serviceOrderList[index]
-                                        ['avatar'],
-                                    width: 120,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              )
-                            : Container(
-                                width: 300,
-                                margin: EdgeInsets.only(left: 18),
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child:
-                                        LoadingItem(width: 300, height: 150)),
-                              );
-                      }),
-                ),
-
-                //promo
-                Container(
-                  height: 50,
-                  margin: EdgeInsets.only(left: 26, right: 26, top: 8),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Promo Hari ini!',
+                        'Hasil Pencarian',
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold),
                       ),

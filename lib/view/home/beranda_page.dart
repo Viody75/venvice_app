@@ -3,6 +3,7 @@ import 'package:venvice/controller/beranda_page_controller.dart';
 import 'package:venvice/utils/my_style.dart';
 import 'package:get/get.dart';
 import 'package:venvice/view/order/order/order_page.dart';
+import 'package:venvice/view/search/search_jasa_page.dart';
 import 'package:venvice/view/widgets/card_berand_item_2.dart';
 import 'package:venvice/view/widgets/outlined_button.dart';
 
@@ -16,18 +17,12 @@ class BerandaPage extends StatefulWidget {
 }
 
 class _BerandaPageState extends State<BerandaPage> {
-  final searchFocus = FocusNode();
   final BerandaPageController _berandaPageController =
       Get.put(BerandaPageController());
   bool isSearchActive = false;
 
   @override
   void initState() {
-    searchFocus.addListener(() {
-      setState(() {
-        isSearchActive = searchFocus.hasFocus;
-      });
-    });
     super.initState();
   }
 
@@ -85,13 +80,13 @@ class _BerandaPageState extends State<BerandaPage> {
                         ),
                         Expanded(
                           child: TextFormField(
-                            focusNode: searchFocus,
+                            onTap: () {
+                              Get.to(() => SearchJasaPage());
+                            },
+                            readOnly: true,
+                            showCursor: false,
                             decoration:
                                 MyStyle.myInputDecor('Cari jasa yang kamu mau'),
-                            textInputAction: TextInputAction.next,
-                            onEditingComplete: () {
-                              FocusScope.of(context).nextFocus();
-                            },
                           ),
                         ),
                       ],
@@ -184,9 +179,9 @@ class _BerandaPageState extends State<BerandaPage> {
           child: Row(
             children: [
               Spacer(),
-              OutlinedBtn('Lebih Banyak', onTap: () {
+              OutlinedBtn('Jelajahi Jasa', onTap: () {
                 Get.to(() => JelajahPage());
-              }, radius: 18, dWidth: 110, dHeight: 26)
+              }, radius: 18, dWidth: 112, dHeight: 26)
             ],
           ),
         ),
