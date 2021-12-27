@@ -3,8 +3,11 @@ import 'package:get/get.dart';
 import 'package:venvice/utils/my_style.dart';
 import 'package:venvice/view/notification/detail_notif.dart';
 import 'package:venvice/view/profile/edit_profile/edit_profile_page.dart';
-import 'package:venvice/view/profile/kupon/coupon.dart';
+
 import 'package:venvice/view/profile/profile_item_page.dart';
+import 'package:venvice/view/profile/vencoin/vencoin_page.dart';
+
+import 'coupon/coupon.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -82,37 +85,58 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
 
-        // Akun
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-          child: Text('Akun',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-        ),
-
         // List Options
         Container(
           width: deviceWidth,
           height: deviceHeight - 60,
           child: ListView(
             children: [
+              // Akun
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                child: Text('Akun',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              ),
               ItemProfile(
                   iconData: Icons.confirmation_num,
                   itemName: 'Kupon Saya',
                   onTap: () {
-                    Get.to(() => CouponPage());
                     print('item kupon tapped');
+                    Get.to(() => CouponPage());
                   }),
               ItemProfile(
-                  iconData: Icons.bookmark,
-                  itemName: 'Alamat Disimpan',
+                  iconData: Icons.monetization_on_outlined,
+                  itemName: 'VenCoin',
                   onTap: () {
-                    print('item alamat tapped');
+                    print('item vencoin tapped');
+                    Get.to(() => VencoinPage());
                   }),
               ItemProfile(
                   iconData: Icons.help,
                   itemName: 'Bantuan',
                   onTap: () {
                     print('item bantuan tapped');
+                  }),
+
+              // Info Lainnya
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                child: Text('Akun',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              ),
+              ItemProfile(
+                  iconData: Icons.library_books,
+                  itemName: 'Syarat & Ketentuan',
+                  onTap: () {
+                    print('item sk tapped');
+                  }),
+              ItemProfile(
+                  iconData: Icons.verified_user,
+                  itemName: 'Kebijakan Privasi',
+                  onTap: () {
+                    print('item kebijakan privasi tapped');
                   }),
             ],
           ),

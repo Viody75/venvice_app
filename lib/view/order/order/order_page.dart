@@ -339,6 +339,15 @@ class _OrderPageState extends State<OrderPage> {
 
         // judul
         Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              color: Colors.white,
+              width: deviceWidth,
+              height: 30,
+            )),
+        Positioned(
           top: 30,
           left: 0,
           right: 0,

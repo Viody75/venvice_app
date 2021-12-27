@@ -51,7 +51,7 @@ class _ChoosePayMethodPageState extends State<ChoosePayMethodPage> {
                   height: deviceHeight - 60,
                   child: ListView.separated(
                     separatorBuilder: (context, index) {
-                      return SizedBox(height: 10);
+                      return SizedBox(height: 18);
                     },
                     itemCount: 6,
                     itemBuilder: (context, index) {

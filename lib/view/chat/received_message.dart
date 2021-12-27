@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:venvice/utils/my_style.dart';
 
 class ReceivedMessageWidget extends StatelessWidget {
   final String content;
@@ -20,8 +21,8 @@ class ReceivedMessageWidget extends StatelessWidget {
           const EdgeInsets.only(right: 75.0, left: 8.0, top: 8.0, bottom: 8.0),
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.deepPurple.shade50,
-            border: Border.all(width: 1, color: Colors.deepPurple),
+            color: MyStyle.primaryColor().withOpacity(0.1),
+            border: Border.all(width: 1, color: MyStyle.primaryColor()),
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12),
                 topRight: Radius.circular(12),

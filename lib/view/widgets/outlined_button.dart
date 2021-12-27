@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:venvice/utils/my_style.dart';
 
 class OutlinedBtn extends StatelessWidget {
   const OutlinedBtn(this.name,
@@ -23,7 +24,7 @@ class OutlinedBtn extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(radius),
-            border: Border.all(width: 1, color: Colors.deepPurple),
+            border: Border.all(width: 1, color: MyStyle.primaryColor()),
             gradient: LinearGradient(
               begin: AlignmentDirectional.bottomStart,
               end: AlignmentDirectional.topEnd,
@@ -38,7 +39,7 @@ class OutlinedBtn extends StatelessWidget {
             shadowColor: Colors.grey[50],
             child: InkWell(
               //<------------------------- InkWell
-              splashColor: Colors.deepPurple[300],
+              splashColor: MyStyle.primaryColor(),
               onTap: onTap,
               child: Container(
                 height: dHeight,
@@ -48,7 +49,7 @@ class OutlinedBtn extends StatelessWidget {
                     '$name',
                     style: TextStyle(
                         fontSize: 16,
-                        color: Colors.deepPurple,
+                        color: MyStyle.primaryColor(),
                         fontWeight: FontWeight.w500),
                   ),
                 ),

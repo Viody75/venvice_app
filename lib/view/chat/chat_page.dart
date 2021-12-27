@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/get.dart';
+import 'package:venvice/utils/my_style.dart';
 import 'package:venvice/view/chat/received_message.dart';
 import 'package:venvice/view/chat/sended_message.dart';
 
@@ -60,6 +61,22 @@ class _ChatPageViewState extends State<ChatPageView> {
         isImage: false,
       ),
     ));
+    childList.add(Align(
+      alignment: Alignment(1, 0),
+      child: SendedMessageWidget(
+        content: 'Mesin cuci saya rusak, kira2 abangnya bisa cek-kan?',
+        time: '21:36 PM',
+        isImage: false,
+      ),
+    ));
+    childList.add(Align(
+      alignment: Alignment(1, 0),
+      child: SendedMessageWidget(
+        content: 'Mesin cuci saya rusak, kira2 abangnya bisa cek-kan?',
+        time: '21:36 PM',
+        isImage: false,
+      ),
+    ));
   }
 
   @override
@@ -76,7 +93,7 @@ class _ChatPageViewState extends State<ChatPageView> {
                   SizedBox(
                     height: 60,
                     child: Container(
-                      color: Colors.deepPurple.shade500,
+                      color: MyStyle.primaryColor(),
                       child: Row(
                         children: <Widget>[
                           IconButton(

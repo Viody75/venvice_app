@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:venvice/utils/my_style.dart';
+
 import 'package:venvice/view/widgets/venvice-button.dart';
+
+import 'detail_coupon_page.dart';
 
 class CouponPage extends StatelessWidget {
   const CouponPage({Key? key}) : super(key: key);
@@ -16,7 +19,6 @@ class CouponPage extends StatelessWidget {
           Container(
             width: deviceWidth,
             height: 60,
-            margin: EdgeInsets.symmetric(horizontal: 12),
             child: Row(
               children: [
                 IconButton(
@@ -38,7 +40,7 @@ class CouponPage extends StatelessWidget {
             height: deviceHeight - 60,
             child: ListView.builder(itemBuilder: (context, index) {
               return Container(
-                margin: EdgeInsets.symmetric(horizontal: 32, vertical: 10),
+                margin: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
                 padding: EdgeInsets.symmetric(horizontal: 12),
                 decoration: MyStyle.containerOne(),
                 child: Column(
@@ -73,7 +75,9 @@ class CouponPage extends StatelessWidget {
                           width: 80,
                           child: VenvicePrimaryBtn(
                             'Pakai',
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(() => CouponDetailPage());
+                            },
                           ),
                         )
                       ],

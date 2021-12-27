@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:venvice/utils/my_style.dart';
 import 'package:venvice/view/auth/choose-auth-page.dart';
+import 'package:venvice/view/order/order/your_order_page.dart';
 import 'package:venvice/view/order/payment/choose_pay_method_page.dart';
 import 'package:venvice/view/widgets/outlined_button.dart';
 
@@ -28,7 +29,6 @@ class _DetailOrderPageState extends State<DetailOrderPage> {
                 // top-nav
                 Container(
                   width: deviceWidth,
-                  margin: EdgeInsets.symmetric(horizontal: 12),
                   height: 60,
                   child: Row(
                     children: [
@@ -316,7 +316,9 @@ class _DetailOrderPageState extends State<DetailOrderPage> {
 
                             // bayar btn
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Get.to(() => YourOrderPage());
+                              },
                               child: Container(
                                 width: double.infinity,
                                 height: 50,
