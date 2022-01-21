@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:venvice/controller/auth_controller.dart';
 import 'package:venvice/view/widgets/venvice-button-disabled.dart';
 import 'package:venvice/view/widgets/venvice-button.dart';
 
@@ -11,6 +12,9 @@ class AuthEmailPage extends StatefulWidget {
 }
 
 class _AuthEmailPageState extends State<AuthEmailPage> {
+  final _authController = Get.put(AuthController());
+
+  // var for froms
   final emailFocus = FocusNode();
   final passFocus = FocusNode();
   bool formIsDone = false;
@@ -117,7 +121,8 @@ class _AuthEmailPageState extends State<AuthEmailPage> {
                         decoration: isEmailActive ? boxActive() : boxInActive(),
                         child: TextFormField(
                           focusNode: emailFocus,
-                          decoration: myInputDecor('testing nih'),
+                          controller: _authController.emailController,
+                          decoration: myInputDecor('Masukan email'),
                           textInputAction: TextInputAction.next,
                           validator: (String? value) {
                             return (value != null && value.contains('@'))
@@ -147,19 +152,16 @@ class _AuthEmailPageState extends State<AuthEmailPage> {
                             isPasswordActive ? boxActive() : boxInActive(),
                         child: TextFormField(
                           focusNode: passFocus,
-                          decoration: myInputDecor('testing lagi nih'),
+                          controller: _authController.passwordController,
+                          decoration: myInputDecor('Masukan kata sandi'),
                           onEditingComplete: () {
                             setState(() {
                               formIsDone = true;
                               FocusScope.of(context).unfocus();
                             });
                           },
+                          obscureText: true,
                           textInputAction: TextInputAction.done,
-                          validator: (String? value) {
-                            return (value != null && value.contains('@'))
-                                ? 'Do not use the @ char.'
-                                : null;
-                          },
                         ),
                       ),
                     ],
@@ -172,10 +174,14 @@ class _AuthEmailPageState extends State<AuthEmailPage> {
                   margin: EdgeInsets.all(18),
                   child: formIsDone
                       ? VenvicePrimaryBtn(
-                          'Selanjutnya',
-                          onTap: () {},
+                          'Login',
+                          onTap: () {
+                            _authController.startAuth(
+                                _authController.emailController.text,
+                                _authController.passwordController.text);
+                          },
                         )
-                      : VenviceBtnDisabled('Selanjutnya'))
+                      : VenviceBtnDisabled('Login'))
             ],
           ),
         ),

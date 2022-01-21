@@ -42,6 +42,7 @@ dependencies:
   geolocator: ^7.7.1
   dotted_border: ^2.0.0+1
   file_picker: ^4.3.0
+  get_storage: ^2.0.3
   
   
 
@@ -70,7 +71,7 @@ flutter:
     - assets/images/logo_venvice.png
     - assets/images/indoflag.png
     - assets/images/ss_peps.png
-    - assets/images/workshop.png
+    - assets/images/perbaikan.png
     - assets/images/venvice-logo-white.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

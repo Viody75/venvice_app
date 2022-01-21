@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:venvice/controller/auth_controller.dart';
+import 'package:venvice/view/auth/auth-email-page.dart';
 import 'package:venvice/view/widgets/venvice-button-disabled.dart';
 import 'package:venvice/view/widgets/venvice-button.dart';
 
@@ -11,6 +13,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final _authController = Get.put(AuthController());
+
+  // var for forms
   final nameFocus = FocusNode();
   final emailFocus = FocusNode();
   final passFocus = FocusNode();
@@ -152,15 +157,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                     isNameActive ? boxActive() : boxInActive(),
                                 child: TextFormField(
                                   focusNode: nameFocus,
+                                  controller: _authController.nameController,
                                   decoration:
                                       myInputDecor('Masukan Nama Lengkap Anda'),
                                   textInputAction: TextInputAction.next,
-                                  validator: (String? value) {
-                                    return (value != null &&
-                                            value.contains('@'))
-                                        ? 'Do not use the @ char.'
-                                        : null;
-                                  },
                                   onEditingComplete: () {
                                     FocusScope.of(context).nextFocus();
                                   },
@@ -184,6 +184,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     isEmailActive ? boxActive() : boxInActive(),
                                 child: TextFormField(
                                   focusNode: emailFocus,
+                                  controller: _authController.emailController,
                                   decoration: myInputDecor('Masukan Email'),
                                   textInputAction: TextInputAction.next,
                                   validator: (String? value) {
@@ -216,6 +217,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     : boxInActive(),
                                 child: TextFormField(
                                   focusNode: passFocus,
+                                  controller:
+                                      _authController.passwordController,
                                   decoration: myInputDecor('Masukan password'),
                                   onEditingComplete: () {
                                     setState(() {
@@ -223,12 +226,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     });
                                   },
                                   textInputAction: TextInputAction.next,
-                                  validator: (String? value) {
-                                    return (value != null &&
-                                            value.contains('@'))
-                                        ? 'Do not use the @ char.'
-                                        : null;
-                                  },
+                                  obscureText: true,
                                 ),
                               ),
                               SizedBox(
@@ -250,6 +248,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     : boxInActive(),
                                 child: TextFormField(
                                   focusNode: passVerifFocus,
+                                  controller:
+                                      _authController.rePasswordController,
                                   decoration:
                                       myInputDecor('Masukan ulang password'),
                                   onEditingComplete: () {
@@ -258,12 +258,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                     });
                                   },
                                   textInputAction: TextInputAction.next,
-                                  validator: (String? value) {
-                                    return (value != null &&
-                                            value.contains('@'))
-                                        ? 'Do not use the @ char.'
-                                        : null;
-                                  },
                                 ),
                               ),
                               SizedBox(
@@ -316,15 +310,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                       height: 60,
                                       child: TextFormField(
                                         focusNode: numberFocus,
+                                        keyboardType: TextInputType.number,
+                                        controller:
+                                            _authController.noHpController,
                                         decoration: myInputNumberDecor(
                                             'Masukan nomor ponsel'),
                                         textInputAction: TextInputAction.done,
-                                        validator: (String? value) {
-                                          return (value != null &&
-                                                  value.contains('+62'))
-                                              ? 'Tidak Menggunakan +62'
-                                              : null;
-                                        },
                                         onEditingComplete: () {
                                           FocusScope.of(context).unfocus();
                                         },
@@ -366,12 +357,22 @@ class _RegisterPageState extends State<RegisterPage> {
                           margin: EdgeInsets.all(18),
                           child: formIsDone
                               ? VenvicePrimaryBtn(
-                                  'Selanjutnya',
+                                  'Daftar',
                                   onTap: () {
-                                    Get.toNamed('/verify-acc-page');
+                                    _authController.startReg(
+                                        name:
+                                            _authController.nameController.text,
+                                        email: _authController
+                                            .emailController.text,
+                                        password: _authController
+                                            .passwordController.text,
+                                        noHp: _authController
+                                            .passwordController.text);
+
+                                    // Get.toNamed('/verify-acc-page');
                                   },
                                 )
-                              : VenviceBtnDisabled('Selanjutnya')),
+                              : VenviceBtnDisabled('Daftar')),
                       SizedBox(height: 36)
                     ],
                   ),

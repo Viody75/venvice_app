@@ -32,7 +32,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     BerandaPage(),
-    ListChatPage(),
+    // ListChatPage(),
     ActivitiesPage(),
     ListNotificationPage(),
     ProfilePage(),
@@ -60,10 +60,10 @@ class _MainMenuPageState extends State<MainMenuPage> {
             icon: Icon(Icons.explore),
             label: 'Beranda',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat_outlined),
-            label: 'Obrolan',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.chat_outlined),
+          //   label: 'Obrolan',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_pin_rounded),
             label: 'Aktivitas',

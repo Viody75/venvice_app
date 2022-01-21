@@ -12,10 +12,12 @@ import 'package:venvice/view/main_menu_page.dart';
 import 'package:venvice/view/splashscreen.dart';
 import 'package:venvice/view/test_lab/tes-fcm-page.dart';
 import 'package:venvice/view/welcome-page.dart';
+import 'package:get_storage/get_storage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await GetStorage.init();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(MyApp());
 }
